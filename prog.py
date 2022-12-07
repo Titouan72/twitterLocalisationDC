@@ -6,7 +6,6 @@ import csv
 from geopy.geocoders import Nominatim
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy
 import math
 from collections import Counter
 import folium
@@ -144,7 +143,7 @@ folium.Circle(
 folium.CircleMarker(
     location=[def_lat, def_long],
     radius=50,
-    popup=username + ' est ici !',
+    popup=username + ' is here !',
     color="#FF0000",
     fill=True,
     fill_color="#FF0000",
