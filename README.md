@@ -63,7 +63,7 @@ If yes do the average of the lat and long of those followers.
 
 Here we go we have the geolocation of the target.
 
-![Result](result.png)
+![Result](result.PNG)
 
 ## Details of how it works
 
