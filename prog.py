@@ -37,7 +37,7 @@ print('Please wait few seconde')
 response = client.get_user(username=username, user_fields='location')
 id_of_user = response.data.id
 df = pd.DataFrame({'id': 0, 'city': 0, 'long': 0, 'lat': 0, 'geoPlot': 0}, index=[0])
-headers = {"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAN54kAEAAAAAoCYGzLAcIaG7PjD%2FiThZNl7Purc%3DF6BV2zTXHDPAef6CfOtgUrAnJKIb2GRhr1rzPih6pw48WRZANX"}
+headers = {"Authorization": os.environ["BEARER_TOKEN"]}
 
 def make_request(id):
     send_url = "https://api.twitter.com/2/users/" + id + "?user.fields=location"

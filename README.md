@@ -40,6 +40,11 @@ So I got the location (if it exist) from user data.
 I checked on the csv if the said location exist, if yes, the job is done.
 
 But if there is not? no problem!
+
+You know what we say...
+'We are the average of our friends'
+
+So...
 We take the followers of the target and check the location of those ones and we make a geoPlot that we can check on figures to check patterns:
 
 geoPlot are made like this:
