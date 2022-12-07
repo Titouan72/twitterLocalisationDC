@@ -49,19 +49,21 @@ round(location.longitude - location.latitude, 2)
 ```
 Then we put our datas on a Dataframe:
 
-![Dataframe](Ex Dataframe.png)
+![Dataframe](Dataframe.png)
 
 As we can see on the hist and the line down below.
 We can see that there is pattern with a lot of people from the same geoPlot
 
-![Hist](Ex Hist Freq.png)
+![Hist](HistFreq.png)
 
-![Line](Ex line.png)
+![Line](Exline.png)
 
 So from this we can check if more than 50% of the followers are from around the same geoPlot.
 If yes do the average of the lat and long of those followers.
 
 Here we go we have the geolocation of the target.
+
+![Result](result.png)
 
 ## Details of how it works
 
