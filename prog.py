@@ -13,9 +13,29 @@ import folium
 
 load_dotenv()
 client = tweepy.Client(bearer_token='AAAAAAAAAAAAAAAAAAAAAN54kAEAAAAAoCYGzLAcIaG7PjD%2FiThZNl7Purc%3DF6BV2zTXHDPAef6CfOtgUrAnJKIb2GRhr1rzPih6pw48WRZANX')
-query=''
-username='_miicaelaa_'
-response = client.get_user(username='_miicaelaa_', user_fields='location')
+print(r"""
+        _____          
+    ,-:` \; ,` -,      
+  . -;_,;   :-;_, .    
+ /;    /    ,  _`.-\   
+|  `. (`     /` ` \`|  
+|:.  `\`-.   \_   / |  
+|     (   `,  .`\ ; |  
+ \     | .      `- /   
+  `.   ;/        .     
+    ` -._____.          
+  _______       _ _   _             _____            _                
+ |__   __|     (_) | | |           / ____|          | |               
+    | |_      ___| |_| |_ ___ _ __| |  __  ___  ___ | |     ___   ___ 
+    | \ \ /\ / / | __| __/ _ \ '__| | |_ |/ _ \/ _ \| |    / _ \ / __|
+    | |\ V  V /| | |_| ||  __/ |  | |__| |  __/ (_) | |___| (_) | (__ 
+    |_| \_/\_/ |_|\__|\__\___|_|   \_____|\___|\___/|______\___/ \___|
+
+                """)
+print('Write the twitter id of the person you want the geolocation:')
+username = input()
+print('Please wait few seconde')
+response = client.get_user(username=username, user_fields='location')
 id_of_user = response.data.id
 df = pd.DataFrame({'id': 0, 'city': 0, 'long': 0, 'lat': 0, 'geoPlot': 0}, index=[0])
 headers = {"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAN54kAEAAAAAoCYGzLAcIaG7PjD%2FiThZNl7Purc%3DF6BV2zTXHDPAef6CfOtgUrAnJKIb2GRhr1rzPih6pw48WRZANX"}
@@ -25,7 +45,7 @@ def make_request(id):
     r =requests.get(send_url, headers=headers)
     j = r.json()
     if 'detail' in j:
-        print(j)
+        print('API is on fire pls wait 15 minutes and retry. Sorry !!!')
     else:
         if 'location' in j['data']:
             if ',' in j['data']['location']:
@@ -45,6 +65,8 @@ def make_request(id):
 
 make_request(str(id_of_user))
 city_of_init_user = make_request(str(id_of_user))
+
+############### PREDICTION USING FOLLOWERS LOC ################
 
 send_url2 = "https://api.twitter.com/2/users/" + str(id_of_user) + "/followers"
 r2 = requests.get(send_url2, headers=headers)
@@ -101,11 +123,16 @@ if percent_of_same_lat > 50:
 else:
     def_lat = sumLatOfFollowers 
 
+############## FINAL PREDICTED LOC #######################
 def_lat = (sum(def_lat))/len(def_lat)
 def_long = (sum(def_long))/len(def_long)
+
+############## DISPLAY MAP LOC ON HTML FILE ##############
+
+print('Latitude: ', def_lat)
+print('Longitude: ',def_long)
 m = folium.Map(location=[def_lat, def_long], zoom_start=3, tiles="Stamen Toner")
-print('LAT 2 ',def_lat)
-print('LONG 2 ',def_long)
+
 folium.Circle(
     radius=100,
     location=[def_lat, def_long],
@@ -124,7 +151,8 @@ folium.CircleMarker(
 ).add_to(m)
 
 m.save("index.html")
-
+print('Oof thats done at least check the map on html file')
+############### ANALYSIS PLOT FIGURE ###############
 """ df = df.iloc[1: , :]
 df.sort_values(['geoPlot'], inplace=True)
 df['index'] = list(range(len(df.index)))
